@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import PlayerCard from "./components/PlayerCard";
+import { getAllPlayers, getPlayerByID } from "./utils/API";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/AppBar";
+import { Player } from "./utils/Interfaces";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const [players, setPlayers] = useState<Array<Player>>([]);
+
+   useEffect(() => {
+      // //Once you want to implement for all players
+      //    getAllPlayers().then((players: Player[]) => {
+      //       return setPlayers(players);
+      //    }).catch((error)=> console.log(error)); 
+
+      getPlayerByID(237)
+         .then((player: Player) => {
+            return setPlayers([player]);
+         }).catch((error) => console.log(error));
+   });
+
+   return (
+      <div className='App' data-testid='app'>
+         <AppBar
+            position='relative'
+            elevation={0}
+            sx={{ borderBottom: (theme) => `16px solid ${theme.palette.divider}` }}
+         >
+            <Toolbar sx={{ flexWrap: "wrap" }}>
+               <Box
+                  component='img'
+                  sx={{
+                     height: 64
+                  }}
+                  alt='nba logo'
+                  src={"https://cdn.nba.com/logos/leagues/logo-nba.svg"}
+               />
+            </Toolbar>
+         </AppBar>
+         <Container sx={{ py: 8 }} maxWidth='md'>
+            <Grid container spacing={4}>
+               {players.length ? (
+                  players.map((player: Player) => {
+                     return <PlayerCard key={player.id} {...player} />;
+                  })
+               ) : (
+                  <Grid item xs={12} sm={6} md={4}>
+                     <Card data-testid='noPlayersCard'>
+                        <CardContent>No players to display</CardContent>
+                     </Card>
+                  </Grid>
+               )}
+            </Grid>
+         </Container>
+      </div>
+   );
 }
 
 export default App;
