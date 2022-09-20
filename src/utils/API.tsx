@@ -31,10 +31,9 @@ export async function getAverageGamesPlayed(playerId: number, seasonStart: numbe
       return data[0].games_played;
    });
 
-   return Promise.all(promises).then((averages: any) => {
+   return Promise.all(promises).then((seasons: any) => {
       let under = 0, over = 0;
-      console.log(averages);
-      averages.forEach((avg: number) => avg > 50 ? over++ : under++);
+      seasons.forEach((games: number) => games > 50 ? over++ : under++);
       return {over50: over, underOrEqual50: under};
    });
 }
