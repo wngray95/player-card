@@ -56,10 +56,10 @@ export default class PlayerCard extends Component<PlayerCardProps, State> {
                         <ListSubheader>Games Played (2014-2020)</ListSubheader>
                         <ListItem>
                            <Avatar sx={{ bgcolor: green[500] }}>{'>50'}</Avatar>
-                           &nbsp;&nbsp;{avgGames.over50} season{avgGames.over50 > 1 ? "'s" : ""}</ListItem>
+                           &nbsp;&nbsp;{avgGames.over50} season{avgGames.over50 !== 1 ? "'s" : ""}</ListItem>
                         <ListItem>
                            <Avatar sx={{ bgcolor: red[500] }}>{'<50'}</Avatar>
-                            &nbsp;&nbsp;{avgGames.underOrEqual50} season{avgGames.underOrEqual50 > 1 ? "'s" : ""}</ListItem>
+                            &nbsp;&nbsp;{avgGames.underOrEqual50} season{avgGames.underOrEqual50 !== 1 ? "'s" : ""}</ListItem>
                      </List>
                   )}
                </CardContent>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import PlayerCard from "./components/PlayerCard";
-import { getAllPlayers, getPlayerByID } from "./utils/API";
+import { getPlayers, getPlayerByID } from "./utils/API";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import AppBar from "@mui/material/AppBar";
@@ -16,14 +16,14 @@ function App() {
 
    useEffect(() => {
       //Once you want to implement for all players
-         // getAllPlayers().then((players: Player[]) => {
-         //    return setPlayers(players);
-         // }).catch((error)=> console.log(error)); 
+         getPlayers(2).then((players: Player[]) => {
+            return setPlayers(players);
+         }).catch((error :any)=> console.log(error)); 
 
-      getPlayerByID(237)
-         .then((player: Player) => {
-            if(player) return setPlayers([player]);
-         }).catch((error) => console.log(error));
+      // getPlayerByID(237)
+      //    .then((player: Player) => {
+      //       if(player) return setPlayers([player]);
+      //    }).catch((error) => console.log(error));
    },[]);
 
    return (
