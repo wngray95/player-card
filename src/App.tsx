@@ -22,7 +22,6 @@ function App() {
 
       getPlayerByID(237)
          .then((player: Player) => {
-            console.log('here');
             if(player) return setPlayers([player]);
          }).catch((error) => console.log(error));
    },[]);
