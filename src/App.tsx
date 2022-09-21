@@ -15,16 +15,17 @@ function App() {
    const [players, setPlayers] = useState<Array<Player>>([]);
 
    useEffect(() => {
-      // //Once you want to implement for all players
-      //    getAllPlayers().then((players: Player[]) => {
-      //       return setPlayers(players);
-      //    }).catch((error)=> console.log(error)); 
+      //Once you want to implement for all players
+         // getAllPlayers().then((players: Player[]) => {
+         //    return setPlayers(players);
+         // }).catch((error)=> console.log(error)); 
 
       getPlayerByID(237)
          .then((player: Player) => {
-            return setPlayers([player]);
+            console.log('here');
+            if(player) return setPlayers([player]);
          }).catch((error) => console.log(error));
-   });
+   },[]);
 
    return (
       <div className='App' data-testid='app'>
@@ -45,7 +46,7 @@ function App() {
             </Toolbar>
          </AppBar>
          <Container sx={{ py: 8 }} maxWidth='md'>
-            <Grid container spacing={4}>
+            <Grid container spacing={4}>    
                {players.length ? (
                   players.map((player: Player) => {
                      return <PlayerCard key={player.id} {...player} />;

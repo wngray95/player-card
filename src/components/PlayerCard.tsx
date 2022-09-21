@@ -53,7 +53,7 @@ export default class PlayerCard extends Component<PlayerCardProps, State> {
                   </Typography>
                   {avgGames && (
                      <List>
-                        <ListSubheader>Avg Games Played(2014-2020)</ListSubheader>
+                        <ListSubheader>Games Played (2014-2020)</ListSubheader>
                         <ListItem>
                            <Avatar sx={{ bgcolor: green[500] }}>{'>50'}</Avatar>
                            &nbsp;&nbsp;{avgGames.over50} season{avgGames.over50 > 1 ? "'s" : ""}</ListItem>
