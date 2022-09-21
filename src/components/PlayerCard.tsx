@@ -46,7 +46,7 @@ export default class PlayerCard extends Component<PlayerCardProps, State> {
                />
                <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant='h5' component='h2'>
-                     {first_name} {last_name}
+                     {first_name} {last_name} | {id}
                   </Typography>
                   <Typography gutterBottom>
                      {city} {name} | {position} {(height_feet && height_inches) && `| ${height_feet}' ${height_inches}"`}

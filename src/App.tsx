@@ -15,15 +15,15 @@ function App() {
    const [players, setPlayers] = useState<Array<Player>>([]);
 
    useEffect(() => {
-      //Once you want to implement for all players
-         getPlayers(2).then((players: Player[]) => {
-            return setPlayers(players);
-         }).catch((error :any)=> console.log(error)); 
+      // //Once you want to implement for all players
+      //    getPlayers(1).then((players: Player[]) => {
+      //       return setPlayers(players);
+      //    }).catch((error :any)=> console.log(error)); 
 
-      // getPlayerByID(237)
-      //    .then((player: Player) => {
-      //       if(player) return setPlayers([player]);
-      //    }).catch((error) => console.log(error));
+      getPlayerByID(237)
+         .then((player: Player) => {
+            if(player) return setPlayers([player]);
+         }).catch((error) => console.log(error));
    },[]);
 
    return (

@@ -25,21 +25,37 @@ export async function getPlayers(perPage?: number) {
 export async function getAverageGamesPlayed(playerId: number, seasonStart: number, seasonEnd: number) {
    const seasons = [...Array(seasonEnd - seasonStart + 1).keys()].map((x) => x + seasonStart);
 
-   const promises = seasons.map(async (season: number) => {
-      const data = await getSeasonAvg(playerId, season);
-      if (data && data[0]) return data[0].games_played;
-      else return null;
+   const promises = seasons.map((season: number) => {
+      return getSeasonAvg(playerId, season);
    });
 
-   return Promise.all(promises).then((seasons: any) => {
+   return Promise.all(promises).then((seasons: any[]) => {
       let under = 0,
          over = 0;
 
-      seasons.forEach((games: number) => {
-         if(games) games > 50 ? over++ : under++;
+      seasons.forEach((season: any) => {
+         if (season.length && season[0].games_played) {
+            return season[0].games_played > 50 ? over++ : under++;
+         }
       });
+
       return { over50: over, underOrEqual50: under };
    });
+}
+
+export async function getAverageGamesPlayedAlt(playerId: number, seasonStart: number, seasonEnd: number) {
+   const seasons = [...Array(seasonEnd - seasonStart + 1).keys()].map((x) => x + seasonStart);
+   let over = 0,
+      under = 0;
+
+   for (let season of seasons) {
+      const res = await getSeasonAvg(playerId, season);
+      if (res.length && res[0].games_played) {
+         res[0].games_played > 50 ? over++ : under++;
+      }
+   }
+
+   return { over50: over, underOrEqual50: under };
 }
 
 async function getSeasonAvg(playerId: number, season: number) {
