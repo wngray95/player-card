@@ -30,8 +30,8 @@ function App() {
       <div className='App' data-testid='app'>
          <AppBar
             position='relative'
-            elevation={0}
-            sx={{ borderBottom: (theme) => `16px solid ${theme.palette.divider}` }}
+            elevation={2}
+            sx={{ borderBottom: (theme) => `16px solid ${theme.palette.divider}`, p: 2 }}
          >
             <Toolbar sx={{ flexWrap: "wrap" }}>
                <Box

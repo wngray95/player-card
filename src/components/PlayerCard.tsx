@@ -41,7 +41,7 @@ export default class PlayerCard extends Component<PlayerCardProps, State> {
                      id === 237
                         ? "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png"
                         : "https://cdn.nba.com/manage/2022/08/nba-ball-general-view-iso.jpg?w=384&h=224"
-                  } // replace with specific player headshot
+                  }
                   alt='player headshot'
                />
                <CardContent sx={{ flexGrow: 1 }}>
