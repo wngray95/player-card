@@ -1,4 +1,6 @@
 const BASEURL = "https://www.balldontlie.io/api/v1";
+//const BASEURL = process.env.REACT_APP_API_URL
+console.log('process.env.API_URL: ', process.env.REACT_APP_API_URL)
 
 export async function getPlayerByID(playerId: string | number) {
    const URL = BASEURL + `/players/${playerId}`;
@@ -48,7 +50,7 @@ export async function getAverageGamesPlayedAlt(playerId: number, seasonStart: nu
    let over = 0,
       under = 0;
 
-   for (let season of seasons) {
+   for (const season of seasons) {
       const res = await getSeasonAvg(playerId, season);
       if (res.length && res[0].games_played) {
          res[0].games_played > 50 ? over++ : under++;
